@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>Createev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/">
+                <img src="/main-logo.png" alt="" />
+            </a>
+        </div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="/">Home</a></li>
+                <li><a href="/product">Products</a></li>
+                <li><a href="/about">About us</a></li>
+                <li><a href="/contact">Contact us</a></li>
+                <li><a href="/account">Account</a></li>
+            </ul>
+            <a href="cart">
+                <img src="/shopping-cart.png" alt="" class="cart-icon" />
+            </a>
+        </nav>
+        <img src="/menu.png" alt="" class="menu-icon" id="menu-icon" onclick="menutoggle()" />
+    </div>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <h1>Life has many surprises, <br />The little things do too.</h1>
+                    <p>
+                        What's in a name? That which we call a rose.<br />
+                        By any other name would smell as sweet.
+                    </p>
+                    <a href="product" class="btn">See more &#8594;</a>
+                </div>
+                <div class="col-2">
+                    <img src="/main-product.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="categories">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <img src="/1.png" alt="" />
+                </div>
+                <div class="col-3">
+                    <img src="/2.JPG" alt="" />
+                </div>
+                <div class="col-3">
+                    <img src="/3.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="small-container">
+        <h2 class="title">Best Seller</h2>
+        <div class="row">
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.slice(0, 4).forEach(function(data){
+            %>
+            <div class="col-4">
+                <a href="product-details/<%= data.product_no %>">
+                    <img src="/<%= data.image %>" alt="">
+                    <h4><%=data.name%></h4>
+                </a>   
+                <p>PHP <%=data.price%></p>
+            </div>
+            <%  i++; }) %>
+            <% } else{ %>
+            <div class="col-4">
+                <a href="product-details">
+                   <img src="/placeholder.png" alt="">
+                    <h4>PLACEHOLDER</h4>
+                </a>   
+                <p>PLACEHOLDER</p>
+            </div>
+            <% } %>
+        </div>
+
+        <h2 class="title">Other Products</h2>
+        <div class="row">
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.slice(4, 8).forEach(function(data){
+            %>
+            <div class="col-4">
+                <a href="product-details/<%= data.product_no %>">
+                    <img src="/<%= data.image %>" alt="">
+                    <h4><%=data.name%></h4>
+                </a>   
+                <p>PHP <%=data.price%></p>
+            </div>
+            <%  i++; }) %>
+            <% } else{ %>
+            <div class="col-4">
+                <a href="product-details">
+                   <img src="/placeholder.png" alt="">
+                    <h4>PLACEHOLDER</h4>
+                </a>   
+                <p>PLACEHOLDER</p>
+            </div>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="offer">
+        <div class="small-container">
+            <div class="row">
+                <%
+                if(userData1.length!=0){
+                var i=1;
+                userData1.forEach(function(data1){
+                %>
+                <div class="col-2">
+                    <img src="/<%=data1.image%>" alt="" class="offer-img" />
+                </div>
+                <div class="col-2">
+                    <p>Featured Product</p>
+                    <h1> <%=data1.name%> </h1>
+                    <small> <%=data1.details%> </small> </br>
+                    <a href="/product-details/<%=data1.product_no%>" class="btn">Buy Now &#8594;</a>
+                </div>
+                <%  i++; }) %>
+                <% } else{ %>
+                    <div class="col-2">
+                        <img src="/placeholder.png" alt="" class="offer-img" />
+                    </div>
+                    <div class="col-2">
+                        <p>Featured Product</p>
+                        <h1>PLACEHOLDER</h1>
+                        <small>
+                            PLACEHOLDER PRODUCT DETAILS
+                        </small> </br>
+                        <a href="#" class="btn">Buy Now &#8594;</a>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonial">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <img src="./quote.png" alt="" id="quote-icon" />
+                    <p>
+                        Thank you for the great service never expected to be this great! Mostly kasi pag mga ganyan medyo masusungit yung ibanf seller. But Createev, sobrang accommodating mo na seller and bagay na bagay yung pangalan brilliant ng gift ideas. Ang ganda! Highly recommended and affordable din sa price. Will definitely order again! God Bless! ❤️😊                    </p>
+                    <img src="./testimonial1.jpg" alt="" id="feedback-img" />
+                    <h3>Alysa Sarmiento</h3>
+                </div>
+                <div class="col-3">
+                    <img src="./quote.png" alt="" id="quote-icon" />
+                    <p>
+                        Hiii I got it na po!!! angganda ganda aaaaa 😭 sayang lang di ko agad mabibigay sa pagbibigyan ko, I’ll definitely order again from u!!!
+                    </p>
+                    <img src="./testimonial2.jpg" alt="" id="feedback-img" />
+                    <h3>Anthonty To</h3>
+                </div>
+                <div class="col-3">
+                    <img src="./quote.png" alt="" id="quote-icon" />
+                    <p>
+                        The shop has a very accommodating seller and they really made sure that the item you ordered will be delivered ASAP/on time. The items are great to give to your special someone! I highly recommend this shop! 😊💖
+                    </p>
+                    <img src="./testimonial3.jpg" alt="" id="feedback-img" />
+                    <h3>Isabelle Jonota</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <div class="app-logo">
+                        <img src="/footer-logo.png" alt="" />
+                        <img src="" alt="" />
+                    </div>
+                    <h3>For The Happiness Of The Customer</h3>
+                </div>
+            </div>
+            <hr />
+            <p class="copyright">Copyright &copy; 2020</p>
+        </div>
+    </div>
+
+    <script>
+        let MenuItems = document.getElementById("MenuItems");
+
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>    
+
+</body>
+
+</html>

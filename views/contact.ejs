@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style2.css" />
+    <title>Creetv</title>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/">
+                <img src="/main-logo.png" alt="" />
+            </a>
+        </div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="/">Home</a></li>
+                <li><a href="/product">Products</a></li>
+                <li><a href="/about">About us</a></li>
+                <li><a href="/contact">Contact us</a></li>
+                <li><a href="/account">Account</a></li>
+            </ul>
+            <a href="cart">
+                <img src="/shopping-cart.png" alt="" class="cart-icon" />
+            </a>
+        </nav>
+        <img src="/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
+    </div>
+
+    <section class="contact">
+        <div class="content-contact">
+            <h2>Contact us</h2>
+        </div>
+        <div class="container-contact">
+            <div class="contactInfo">
+                <div class="box">
+                    <div class="icon-contact"><i class='bx bx-phone'></i></div>
+                    <div class="text">
+                        <h3>Phone</h3>
+                            <p>09669585532</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon-contact"><i class='bx bx-envelope' ></i></div>
+                    <div class="text">
+                        <h3>Email</h3>
+                            <p>createev_2020@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contactForm">
+                <form action='/sendInquiry' method="POST">
+                    <h2>Send Message</h2>
+                    <div class="inputBox">
+                        <input type="text" name="name" id="name" required="required">
+                        <span>Full Name</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" name="email" id="email" required="required">
+                        <span>Email</span>
+                    </div>
+                    <div class="inputBox">
+                        <textarea name="inquiry" id="inquiry" required="required"></textarea>
+                        <span>Type your Message... (Limit 500 Characters)</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="submit" onclick="return confirm('Are you sure you wish to send this inquiry?')" value="Send">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <div class="app-logo">
+                        <img src="/footer-logo.png" alt="">
+                        <img src="" alt="">
+                    </div>
+                    <h3>For The Happiness Of The Customer</h3>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright &copy; 2020</p>
+        </div>
+    </div>
+
+    <script>
+        let MenuItems = document.getElementById("MenuItems");
+
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style2.css" />
+    <title>Createev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/">
+                <img src="/main-logo.png" alt="" />
+            </a>
+        </div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="/">Home</a></li>
+                <li><a href="product">Products</a></li>
+                <li><a href="about">About us</a></li>
+                <li><a href="contact">Contact us</a></li>
+                <li><a href="account">Account</a></li>
+            </ul>
+            <a href="cart">
+                <img src="/shopping-cart.png" alt="" class="cart-icon" />
+            </a>
+        </nav>
+        <img src="/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
+    </div>
+
+    <section>
+        <div class = "image">
+        </div>
+
+        <div class = "content">
+            <h2>About Us</h2>
+            <span></span>
+
+            <p>The Createev Store
+
+                The store is named after the owner’s surname combined with the word creative. 
+                
+                A store that is all about trendy items, room decors, gifts, flowers and many more! 
+                
+                Let’s keep it createev! 💁🏻‍♀️</p>
+
+            <ul class = "icons">
+                <li>
+                    <a href="https://www.instagram.com/createev_"><i class='bx bxl-instagram-alt' ></i></a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/CreaTEEv-108362124266210"><i class='bx bxl-facebook-square' ></i></a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <div class="app-logo">
+                        <img src="/footer-logo.png" alt="">
+                        <img src="" alt="">
+                    </div>
+                    <h3>For The Happiness Of The Customer</h3>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright &copy; 2020</p>
+        </div>
+    </div>
+
+    <script>
+        let MenuItems = document.getElementById("MenuItems");
+
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

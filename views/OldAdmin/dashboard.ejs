@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Createev - Dashboard</title>
+<style>
+table .commands{
+	padding-left:30px;
+	font-family:"Bebas Neue";
+	font-size:30px;
+	
+}
+
+table .signout {
+	font-family:"Bebas Neue";
+	font-size:30px;
+}
+
+table .title {
+	font-family:"Bebas Neue";
+	font-size:30px;
+}
+
+a:link {
+  color: black;
+}
+
+/* visited link */
+a:visited {
+  color: black;
+}
+
+/* mouse over link */
+a:hover {
+  color: Gray;
+}
+
+/* selected link */
+a:active {
+  color:#333;
+}
+
+.hide-row { display:none; }
+
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("input[name=btnAdd]").click(function () {
+            if ($(this).val() == "Yes") {
+                $(".hide-row").show();
+            } else {
+                $(".hide-row").hide();
+            }
+        });
+    });
+</script>
+</head>
+
+<body bgcolor="#FBCECE">
+<table width="100%">
+  <tr>
+    <td width="20%"><a href="/dashboard"> <img src="/LOGO.png" width="215" height="215" /></a></td>
+    <td width="80%" align="right"><table height="250">
+        <tr>
+          <td class="signout" valign="top"><a href="/" style="text-decoration: none;">SIGN OUT</a></td>
+        </tr>
+        <tr>
+          <td><input type="image" src="/add.png" width="50" height="50" name="btnAdd" value="Yes"/></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td class="commands"><div><a href="/dashboard" style="text-decoration: none;">DASHBOARD</a></div>
+    <div ><a href="/orders" style="text-decoration: none;">ORDERS</a></div>
+    <div ><a href="/products" style="text-decoration: none;">PRODUCTS</a></div>
+    <div ><a href="/customers" style="text-decoration: none;">CUSTOMERS</a></div></td>
+    <td valign="top" bgcolor="#CCCCCC">
+    <table WIDTH="100%">
+        <tr class="title">
+          <td width= "20%" align="center" > #</td>
+          <td width="20%" align="center" bgcolor="#CCCCCC">NAME</td>
+          <td width="20%" align="center" bgcolor="#CCCCCC">EMAIL</td>
+          <td width="20%" align="center" bgcolor="#CCCCCC">STATUS</td>
+          <td width="20%" align="center" bgcolor="#CCCCCC">ACTION</td>
+        </tr>
+
+        <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+        <tr>
+            <td width= "20%" align="center"><%=data.id %></td>
+            <td width= "20%" align="center"><%=data.name %></td>
+            <td width= "20%" align="center"><%=data.email %></td>
+            <td width= "20%" align="center"><%=data.status %></td>
+            <td width= "16.67%" align="center"><form action="/dashboard-delete/<%=data.id%>"> <input type="submit" onclick="return confirm('Are you sure you wish to delete this entry?')" value="Delete" /> </form> </td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="5" align="center">No Data Found</td>
+            </tr>
+        <% } %>
+
+        <tr class="hide-row">
+           <form action='/addDash' method="POST">
+               <td width= "20%" align="center">---</td>
+               <td width= "20%" align="center"><input required type="text" name="name" id="name" placeholder="Enter Name"></td>
+               <td width= "20%" align="center"><input required type="text" name="email" id="email" placeholder="Enter eMail"></td>
+               <td width= "20%" align="center"><input required type="password" name="pass" id="pass" placeholder="Enter Password"></td>
+               <td width= "16.67%" align="center"><button type="submit" onclick="return confirm('Are you sure you wish to add this entry?')">Submit</button></td>
+            </form>
+          </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

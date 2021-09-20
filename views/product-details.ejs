@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/css/style1.css" />
+    <title>Createev</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/">
+                <img src="/main-logo.png" alt="" />
+            </a>
+        </div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="/">Home</a></li>
+                <li><a href="/product">Products</a></li>
+                <li><a href="/about">About us</a></li>
+                <li><a href="/contact">Contact us</a></li>
+                <li><a href="/account">Account</a></li>
+            </ul>
+            <a href="/cart">
+                <img src="/shopping-cart.png" alt="" class="cart-icon" />
+            </a>
+        </nav>
+        <img src="/menu.png" alt="" class="menu-icon" onclick="menutoggle()">
+    </div>
+
+    <div class="small-container single-product">
+        <div class="row">
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.forEach(function(data){
+            %>
+            <div class="col-2">
+                <img src="/<%= data.image %>" alt="" width="100%" id="ProductImg">
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                        <img src="/<%= data.image %>" alt="" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="/<%= data.image1 %>" alt="" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="/<%= data.image2 %>" alt="" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="/<%= data.image3 %>" alt="" width="100%" class="small-img">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <h1><%= data.name %></h1>
+                <h4>PHP <%= data.price %></h4>
+                <form action="/addToCart" method='POST' onsubmit="return alert('Your cart has been updated! Redirecting you back to the product catalogue.')">
+                <select required name="options" id="options">
+                    <option disabled>Select Color:</option>
+                    <option value="White">White</option>
+                    <option value="Black">Black</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Red">Red</option>
+                    <option value="Yellow">Yellow</option>
+                </select>
+                <input type="number" name="count" value="1">
+                <input hidden type="number" name="id" value="<%= data.product_no %>">
+                <input type="submit" class="bton" value="Add to Cart"> 
+                </form>
+                <h3>Product Details:</h3>
+                <br>
+                <p><%= data.details %></p>
+            </div>
+            <%  i++; }) %>
+            <% } else{ %>
+            <div class="col-2">
+                <img src="/placeholder.png" alt="" width="100%" id="ProductImg">
+    
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                        <img src="/placeholder.png" alt="" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="/placeholder.png" alt="" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="/placeholder.png" alt="" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="/placeholder.png" alt="" width="100%" class="small-img">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <h1>Placeholder Name</h1>
+                <h4>Placeholder Price</h4>
+                <form>
+                <select>
+                    <option>Placeholder Option:</option>
+                    <option>Option1</option>
+                    <option>Option2</option>
+                    <option>Option3</option>
+                    <option>Option4</option>
+                    <option>Option5</option>
+                </select>
+                <input type="number" value="1">
+                <input type="submit" class="btn" value="Add to Cart">
+            </form>
+                <h3>Product Details:</h3>
+                <br>
+                <p>Placeholder Product Details</p>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <div class="app-logo">
+                        <img src="/footer-logo.png" alt="">
+                        <img src="" alt="">
+                    </div>
+                    <h3>For The Happiness Of The Customer</h3>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright &copy; 2020</p>
+        </div>
+    </div>
+
+    <script>
+        let MenuItems = document.getElementById("MenuItems");
+
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+        let ProductImg = document.getElementById("ProductImg");
+        let SmallImg = document.getElementsByClassName("small-img")
+
+        SmallImg[0].onclick = function () {
+            ProductImg.src = SmallImg[0].src;
+        }
+        SmallImg[1].onclick = function () {
+            ProductImg.src = SmallImg[1].src;
+        }
+        SmallImg[2].onclick = function () {
+            ProductImg.src = SmallImg[2].src;
+        }
+        SmallImg[3].onclick = function () {
+            ProductImg.src = SmallImg[3].src;
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/adminstyles.css">
+    <title>Customers</title>
+</head>
+<body id="body-pd">
+    <header class="header" id="header">
+        <div class="header__toggle">
+            <i class='bx bx-menu' id="header-toggle"></i>
+        </div>
+        
+        <div class="header__text">
+            <a href="/signout">
+                <h3><i class='bx bx-log-out nav__icon' ></i> SIGN OUT</h3>
+            </a>
+        </div>
+    </header>
+
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="/dashboard" class="nav__logo">
+                    <div class="header__img">
+                        <img src="/logo.png" alt="">
+                    </div>
+                    <span class="nav__logo-name">Createev</span>
+                </a>
+
+                <div class="nav__list">
+                    <a href="/dashboard" class="nav__link">
+                    <i class='bx bx-grid-alt nav__icon' ></i>
+                        <span class="nav__name">Dashboard</span>
+                    </a>
+                    
+                    <a href="/products" class="nav__link ">
+                        <i class='bx bxs-category-alt nav__icon' ></i>
+                        <span class="nav__name">Product</span>
+                    </a>
+
+                    <a href="/orders" class="nav__link">
+                        <i class='bx bxs-cart-alt nav__icon' ></i>
+                        <span class="nav__name">Order</span>
+                    </a>
+
+                    <a href="/customers" class="nav__link active">
+                        <i class='bx bx-user nav__icon' ></i>
+                        <span class="nav__name">Customers</span>
+                    </a>
+                    <a href="/email" class="nav__link ">
+                        <i class='bx bx-envelope nav__icon' ></i>
+                        <span class="nav__name">Email</span>
+                    </a>
+                </div>
+            </div>
+
+        </nav>
+    </div>
+
+    <div class="table_container">
+        <table>
+            <tr class="title">
+              <td class="td_1" > #</td>
+              <td class="td_2">NAME</td>
+              <td class="td_1">EMAIL</td>
+              <td class="td_2">ADDRESS</td>
+              
+            </tr>
+            
+            
+            <%
+            if(userData.length!=0){
+            var i=1;
+            userData.forEach(function(data){
+            %>
+            <tr>
+                <td width= "25%" align="center"><%=data.id %></td>
+                <td width= "25%" align="center"><%=data.name %></td>
+                <td width= "25%" align="center"><%=data.email %></td>
+                <td width= "25%" align="center"><%=data.address %></td>
+            </tr>
+            <%  i++; }) %>
+            <% } else{ %>
+                <tr>
+                    <td colspan="3" align="center">No Data Found</td>
+                </tr>
+            <% } %>
+            
+            
+          </table>
+    </div>
+    
+
+   
+    <script>
+const showNavbar = (toggleId, navId, bodyId, headerId) =>{
+    const toggle = document.getElementById(toggleId),
+    nav = document.getElementById(navId),
+    bodypd = document.getElementById(bodyId),
+    headerpd = document.getElementById(headerId)
+
+    if(toggle && nav && bodypd && headerpd){
+        toggle.addEventListener('click', ()=>{
+            nav.classList.toggle('show')
+            toggle.classList.toggle('bx-x')
+            bodypd.classList.toggle('body-pd')
+            headerpd.classList.toggle('header-pd')
+        })
+    }
+}
+
+showNavbar('header-toggle','nav-bar','body-pd','header')
+
+const linkColor = document.querySelectorAll('.nav__link')
+
+function colorLink(){
+    if(linkColor){
+        linkColor.forEach(l=> l.classList.remove('active'))
+        this.classList.add('active')
+    }
+}
+linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+    </script>
+</body>
+</html>

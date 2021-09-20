@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style7.css" />
+    <title>Creetv</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/">
+                <img src="./main-logo.png" alt="" />
+            </a>
+        </div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="/">Home</a></li>
+                <li><a href="/product">Products</a></li>
+                <li><a href="/about">About us</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/account">Account</a></li>
+            </ul>
+            <a href="./cart.html">
+                <img src="./shopping-cart.png" alt="" class="cart-icon" />
+            </a>
+        </nav>
+        <img src="./menu.png" alt="" class="menu-icon" onclick="menutoggle()">
+    </div>
+
+    <div class="account-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <img src="./main-product.png" alt="">
+                </div>
+                <div class="col-2">
+                    <div class="form-container">
+                        <div class="upper-container-forgot">
+                            <div class="forgot-ins">
+                                <h4>Please input your email address and contact number</h4>
+                            </div>
+                        </div>
+                        <form action="/forgoTest" method='POST'> 
+                        <div class="lower-container-forgot">            
+                            <div class="div"> 
+                                <h5><i class='bx bx-envelope'></i> Email Address</h5>
+                                <input type="email" class="input" id="email" name="email">
+                            </div>
+                            <div class="div">      
+                                <h5><i class='bx bx-mobile-alt' ></i>Contact No.</h5>
+                                <input type="text" class="input" id="contactNum" name="contactNum" >
+                            </div>
+                            <div>
+                                <input type="submit" class="btn" value="Submit"> 
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <div class="app-logo">
+                        <img src="../img/footer-logo.png" alt="">
+                        <img src="" alt="">
+                    </div>
+                    <h3>For The Happiness Of The Customer</h3>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright &copy; 2020</p>
+        </div>
+    </div>
+
+    <script>
+        let MenuItems = document.getElementById("MenuItems");
+
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+
+        let Login = document.getElementById("Login");
+        let Signup = document.getElementById("Signup");
+        let indicator = document.getElementById("indicator");
+
+        function signup(){
+            Signup.style.transform = "translateX(0px)";
+            Login.style.transform = "translateX(0px)";
+            indicator.style.transform = "translateX(100px)";
+        }
+
+        function login(){
+            Signup.style.transform = "translateX(300px)";
+            Login.style.transform = "translateX(300px)";
+            indicator.style.transform = "translateX(0px)";
+        }
+    </script>
+
+
+
+
+</body>
+
+</html>

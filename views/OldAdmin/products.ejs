@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>products</title>
+<style>
+table .commands{
+	padding-left:30px;
+	font-family:"Bebas Neue";
+	font-size:30px;
+	
+}
+
+table .signout {
+	font-family:"Bebas Neue";
+	font-size:30px;
+}
+
+table .title {
+	font-family:"Bebas Neue";
+	font-size:30px;
+}
+
+a:link {
+  color: black;
+}
+
+/* visited link */
+a:visited {
+  color: black;
+}
+
+/* mouse over link */
+a:hover {
+  color: Gray;
+}
+
+/* selected link */
+a:active {
+  color:#333;
+}
+
+.hide-row { display:none; }
+
+.img{
+max-height: 50px;
+max-width: 50px;
+width: 50px;
+height: 50px;
+}
+
+.buttons {
+  margin: auto;
+  padding: auto;
+}
+
+.btn-inline {
+  display: inline-block;
+  width: calc(50% - 4px);
+  margin: auto;
+}
+
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("input[name=btnAdd]").click(function () {
+            if ($(this).val() == "Yes") {
+                $(".hide-row").show();
+            } else {
+                $(".hide-row").hide();
+            }
+        });
+    });
+</script>
+
+</head>
+
+<body bgcolor="#FBCECE">
+<table width="100%">
+  <tr>
+    <td width="20%"><a href="dashboard"> <img src="/LOGO.png" width="215" height="215" /></a></td>
+    <td width="80%" align="right"><table height="250">
+        <tr>
+          <td class="signout" valign="top"><a href="/account" style="text-decoration: none;">SIGN OUT</a></td>
+        </tr>
+        <tr>
+          <td><input type="image" src="/add.png" width="50" height="50" name="btnAdd" value="Yes"/></td>
+        </tr>
+      </table></td>
+  </tr>
+  <tr>
+    <td class="commands"><div><a href="/dashboard" style="text-decoration: none;">DASHBOARD</a></div>
+      <div ><a href="/orders" style="text-decoration: none;">ORDERS</a></div>
+      <div ><a href="/products" style="text-decoration: none;">PRODUCTS</a></div>
+      <div ><a href="/customers" style="text-decoration: none;">CUSTOMERS</a></div></td>
+    <td valign="top" bgcolor="#CCCCCC">
+    <table WIDTH="100%">
+        <tr class="title">
+          <td width= "16.67%" align="center" > #</td>
+          <td width="16.67%" align="center" bgcolor="#CCCCCC">NAME</td>
+          <td width="16.67%" align="center" bgcolor="#CCCCCC">IMAGE</td>
+          <td width="16.67%" align="center" bgcolor="#CCCCCC">PRICE</td>
+          <td width="16.67%" align="center" bgcolor="#CCCCCC">QUANTITY</td>
+          <td width="16.67%" align="center" bgcolor="#CCCCCC">ACTION</td>
+        </tr>
+        
+        <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+        <tr>
+            <td width= "16.67%" align="center"><%=data.product_no; %></td>
+            <td width= "16.67%" align="center"><%=data.name %></td>
+            <td width= "16.67%" align="center"><img src="/<%=data.image %>" class="img"></td>
+            <td width= "16.67%" align="center">₱ <%=data.price %></td>
+            <td width= "16.67%" align="center"><%=data.quantity %></td>
+            <td width= "16.67%" align="center">
+              <% if(data.featured == 0){ %>
+              <div class="buttons">
+              <form class="btn-inline"  action="/products-feature/<%=data.product_no%>"> <input type="submit" onclick="return confirm('Are you sure you wish to feature this entry? (This will replace the currently featured product)')" value="Feature" /></form>
+              <form class="btn-inline" action="/products-delete/<%=data.product_no%>"> <input type="submit"  onclick="return confirm('Are you sure you wish to delete this entry?')" value="Delete" /></form>
+              </div>
+              <% } else { %>
+              <div class="buttons">
+              <p class="btn-inline">Featured</p>
+              <form class="btn-inline" action="/products-delete/<%=data.product_no%>"> <input type="submit" onclick="return confirm('Are you sure you wish to delete this entry?')" value="Delete" /></form> 
+            </div>
+              <% } %>
+            </td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="6" align="center">No Data Found</td>
+            </tr>
+        <% } %>
+
+        <tr class="hide-row">
+          <form action='/addProducts' method="POST" enctype="multipart/form-data" role="form">
+          <td width= "16.67%" align="center"><input required type="text" id="details" name="details" placeholder="Enter Product Description"></td>
+          <td width= "16.67%" align="center"><input required type="text" id="name" name="name" placeholder="Enter Product Name"></td>
+          <td width= "16.67%" align="center"><input required type="file" id="image" name="image" accept=""><input required type="file" id="image1" name="image1" accept=""><input required type="file" id="image2" name="image2" accept=""><input required type="file" id="image3" name="image3" accept=""></td>
+          <td width= "16.67%" align="center"><input required type="text" id="price" name="price" placeholder="Enter Price"></td>
+          <td width= "16.67%" align="center"><input required type="text" id="quantity" name="quantity" placeholder="Enter Quantity"></td>
+          <td width= "16.67%" align="center"><button action='submit' onclick="return confirm('Are you sure you wish to add this entry?')" value="Delete" >Submit</button></td>
+          </form>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

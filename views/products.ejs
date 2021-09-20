@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/adminstyles.css">
+    <title>Products</title>
+    <script type="text/javascript">
+        function showDiv() {
+            document.getElementById('hidey').style.display = "";
+        }
+    </script>
+</head>
+<body id="body-pd">
+    <header class="header" id="header">
+        <div class="header__toggle">
+            <i class='bx bx-menu' id="header-toggle"></i>
+        </div>
+        
+        <div class="header__text">
+            <a href="/signout">
+                <h3><i class='bx bx-log-out nav__icon' ></i> SIGN OUT</h3>
+            </a>
+        </div>
+    </header>
+
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="/dashboard" class="nav__logo">
+                    <div class="header__img">
+                        <img src="/logo.png" alt="">
+                    </div>
+                    <span class="nav__logo-name">Createev</span>
+                </a>
+
+                <div class="nav__list">
+                    <a href="/dashboard" class="nav__link">
+                    <i class='bx bx-grid-alt nav__icon' ></i>
+                        <span class="nav__name">Dashboard</span>
+                    </a>
+                    
+                    <a href="/products" class="nav__link active">
+                        <i class='bx bxs-category-alt nav__icon' ></i>
+                        <span class="nav__name">Product</span>
+                    </a>
+
+                    <a href="/orders" class="nav__link">
+                        <i class='bx bxs-cart-alt nav__icon' ></i>
+                        <span class="nav__name">Order</span>
+                    </a>
+
+                    <a href="/customers" class="nav__link">
+                        <i class='bx bx-user nav__icon' ></i>
+                        <span class="nav__name">Customers</span>
+                    </a>
+                    
+                    <a href="/email" class="nav__link ">
+                        <i class='bx bx-envelope nav__icon' ></i>
+                        <span class="nav__name">Email</span>
+                    </a>
+                </div>
+            </div>
+
+        </nav>
+    </div>
+<div class="add">
+    
+    <td><input type="image" src="/add.png" name="btnAdd" value="Yes" onclick="showDiv()"/></td>
+
+</div>
+    
+<div class="table_container">
+    <table>
+        <tr class="title">
+          <td class="td_1" > #</td>
+          <td class="td_2">NAME</td>
+          <td class="td_1">IMAGE</td>
+          <td class="td_2">PRICE</td>
+          <td class="td_1">QUANTITY</td>
+          <td class="td_2">ACTION</td>
+        </tr>
+        
+        
+        <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+        <tr>
+            <td width= "16.67%" align="center"><%=data.product_no; %></td>
+            <td width= "16.67%" align="center"><%=data.name %></td>
+            <td width= "16.67%" align="center"><img src="/<%=data.image %>" class="img"> <img src="/<%=data.image1 %>" class="img"> <img src="/<%=data.image2 %>" class="img"> <img src="/<%=data.image3 %>" class="img"></td>
+            <td width= "16.67%" align="center">PHP <%=data.price %></td>
+            <td width= "16.67%" align="center"><%=data.quantity %><form id="productAddQty" class="btn-inline" method="POST"  action="/products-addQty/<%=data.product_no%>"><input type="number" style="width:35px;" id="qty" name="qty" value="0"></input><input type="submit" value="+/-"/></form></td>
+            <td width= "16.67%" align="center">
+              <% if(data.featured == 0){ %>
+              <div class="buttons">
+              <form class="btn-inline"  action="/products-feature/<%=data.product_no%>"> <input type="submit" onclick="return confirm('Are you sure you wish to feature this entry? (This will replace the currently featured product)')" value="Feature" /></form>
+              <form class="btn-inline" action="/products-delete/<%=data.product_no%>"> <input type="submit"  onclick="return confirm('Are you sure you wish to delete this entry?')" value="Delete" /></form>
+              </div>
+              <% } else { %>
+              <div class="buttons">
+              <p class="btn-inline">Featured</p>
+              <form class="btn-inline" action="/products-delete/<%=data.product_no%>"> <input type="submit" onclick="return confirm('Are you sure you wish to delete this entry?')" value="Delete" /></form> 
+            </div>
+              <% } %>
+            </td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="6" align="center">No Data Found</td>
+            </tr>
+        <% } %>
+        
+        <tr id="hidey" style="display:none;">
+          <form action='/addProducts' method="POST" enctype="multipart/form-data" role="form">
+          <td width= "16.67%" align="center"><input required type="text" id="details" name="details" placeholder="Enter Product Description"></td></td>
+          <td width= "16.67%" align="center"><input required type="text" id="name" name="name" placeholder="Enter Product Name"></td>
+          <td width= "16.67%" align="center"><input required type="file" id="image" name="image" accept=""><input required type="file" id="image1" name="image1" accept=""><input required type="file" id="image2" name="image2" accept=""><input required type="file" id="image3" name="image3" accept=""></td>
+          <td width= "16.67%" align="center"><input required type="text" id="price" name="price" placeholder="Enter Price"></td>
+          <td width= "16.67%" align="center"><input required type="text" id="quantity" name="quantity" placeholder="Enter Quantity"></td>
+          <td width= "16.67%" align="center"><button action='submit' onclick="return confirm('Are you sure you wish to add this entry?')" value="Delete" >Submit</button></td>
+          </form>
+        </tr>
+        
+      </table>
+</div>
+
+   
+    <script>
+const showNavbar = (toggleId, navId, bodyId, headerId) =>{
+    const toggle = document.getElementById(toggleId),
+    nav = document.getElementById(navId),
+    bodypd = document.getElementById(bodyId),
+    headerpd = document.getElementById(headerId)
+
+    if(toggle && nav && bodypd && headerpd){
+        toggle.addEventListener('click', ()=>{
+            nav.classList.toggle('show')
+            toggle.classList.toggle('bx-x')
+            bodypd.classList.toggle('body-pd')
+            headerpd.classList.toggle('header-pd')
+        })
+    }
+}
+
+showNavbar('header-toggle','nav-bar','body-pd','header')
+
+const linkColor = document.querySelectorAll('.nav__link')
+
+function colorLink(){
+    if(linkColor){
+        linkColor.forEach(l=> l.classList.remove('active'))
+        this.classList.add('active')
+    }
+}
+linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+function addPrompt() {
+  var addQty = prompt('How much item quantity to add?', 10);
+  document.getElementById("qty").value = addQty;
+}
+    </script>
+</body>
+</html>
