@@ -11,7 +11,7 @@ The primary purpose of the Createev Concept Site is to create a site that best a
 - **EJS:** Template Engine used for serving frontend design and retrieved data.
 - **MySQL:** Database solution used for storing item data, user accounts, etc.
 
-# System Screenshots
+## System Screenshots
 
 - Landing Page
   ![Landing1](https://res.cloudinary.com/dy9kcczqb/image/upload/v1632108895/portfolio-createevIMAGES/landing1_tndhdf.png)
